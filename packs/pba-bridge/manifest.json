@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Practice Bridge",
+    "description": "Standard practice-bot API + Amixi-compatible site coordinates. Requires Beta APIs when the bot provider is PvP Practice Bots.",
+    "uuid": "8f3c1d20-5a4b-4c9e-9d61-7b2e4f8a1c30",
+    "version": [0, 1, 0],
+    "min_engine_version": [1, 21, 120]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "a71e5b46-2c8d-4f13-8e57-9c4b6d0a2e51",
+      "version": [0, 1, 0]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "c93d6e58-4f1a-4b27-9d80-3e5a7c1b9f42",
+      "entry": "scripts/main.js",
+      "version": [0, 1, 0]
+    }
+  ],
+  "dependencies": [
+    { "module_name": "@minecraft/server", "version": "2.0.0" },
+    { "module_name": "@minecraft/server-ui", "version": "2.0.0" },
+    { "module_name": "@minecraft/server-gametest", "version": "beta" }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "pba-bridge",
+  "private": true,
+  "version": "0.2.0",
+  "description": "Standard practice-bot API for Bedrock, with an Amixi-compatible sites layer",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "build:release": "node tools/build.mjs --minify --require-amixi",
+    "typecheck": "tsc --noEmit",
+    "test": "node tools/test/run.mjs",
+    "verify": "npm run typecheck && npm test && npm run build",
+    "vendor": "node tools/vendor.mjs",
+    "codemod": "node tools/codemod/amixi-sites.mjs"
+  },
+  "devDependencies": {
+    "@minecraft/server": "^2.11.0",
+    "@minecraft/server-ui": "^2.3.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.7.0"
+  }
+}

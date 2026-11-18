@@ -1,0 +1,73 @@
+name: release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag to release (e.g. v0.2.0)
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+
+      # Amixi is not in this repository. If the repo (or org) has an
+      # AMIXI_SOURCE_URL secret pointing at your own copy, the patched
+      # mcaddon is built too. Without it, only the bridge is released.
+      - name: Prepare Amixi source
+        env:
+          AMIXI_SOURCE_URL: ${{ secrets.AMIXI_SOURCE_URL }}
+        run: node tools/vendor.mjs
+
+      - name: Build release artifacts
+        run: node tools/build.mjs --minify
+
+      - name: Checksums
+        run: |
+          cd dist
+          sha256sum *.mcpack *.mcaddon 2>/dev/null > SHA256SUMS.txt || sha256sum *.mcpack > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts
+          path: |
+            dist/*.mcpack
+            dist/*.mcaddon
+            dist/SHA256SUMS.txt
+          if-no-files-found: error
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
+          name: ${{ github.event.inputs.tag || github.ref_name }}
+          body: |
+            ## Install
+
+            1. **PracticeBridge.mcpack** — install and enable. Needs Beta APIs on.
+            2. **AmixiXPvP.mcaddon** — install to replace your existing Amixi behaviour + resource packs.
+            3. Keep **PvP Practice Bots** installed; the bridge drives it.
+
+            Then run `/pba:menu` (or `/scriptevent pbac:menu`). See `docs/commands.md`.
+
+            If the Amixi artifact is missing, this repo had no `AMIXI_SOURCE_URL` secret —
+            build it locally with `npm run vendor -- --from <your Amixi.mcaddon>` then `npm run build`.
+          files: |
+            dist/*.mcpack
+            dist/*.mcaddon
+            dist/SHA256SUMS.txt
