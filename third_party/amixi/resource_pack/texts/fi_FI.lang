@@ -1,0 +1,17 @@
+﻿tile.bot:block.name=Andesiitti
+multiplayer.player.joined=§7[§a+§7] §a%s
+multiplayer.player.joined.renamed=§7[§a+§7] §a%s
+multiplayer.player.left=§7[§c-§7] §c%s
+item.compass.name=§bNavigaattori
+item.magma_cream.name=§bTapa botit
+item.slime_ball.name=§bBotti
+item.dye.green.name=§bAloita
+item.dye.orange.name=§bAsetukset
+item.dye.blue_new.name=§bVaihda pelitilaa
+item.dye.black.name=§bNollaa parhaat ajat
+item.dye.red.name=§bPoistu
+menu.returnToGame=Takaisin §bAmixi
+pauseScreen.quit=Poistu §bAmixi
+unloadedchunk.message.warning=Ladataan chunkkeja...
+accessibility.chat.howtoopen=\n
+accessibility.chat.howtoemote=\n

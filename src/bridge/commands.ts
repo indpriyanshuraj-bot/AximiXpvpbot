@@ -114,6 +114,20 @@ export function registerCustomCommands(): void {
       },
       {
         def: {
+          name: 'pba:duel',
+          description: 'Spawn a duel bot using your current mode tag and kit',
+          permissionLevel: CommandPermissionLevel.GameDirectors,
+          cheatsRequired: false,
+          optionalParameters: [
+            { name: 'mode', type: CustomCommandParamType.String },
+            { name: 'difficulty', type: CustomCommandParamType.String },
+          ],
+        },
+        run: (origin, mode, difficulty) =>
+          reply(origin, actions.spawnDuelBot(asPlayer(origin), mode as string, difficulty as string)),
+      },
+      {
+        def: {
           name: 'pba:clear',
           description: 'Remove every practice bot',
           permissionLevel: CommandPermissionLevel.GameDirectors,
@@ -217,6 +231,8 @@ export function subscribeScriptEvents(): void {
           return send(player, actions.status());
         case 'pbac:spawn':
           return send(player, actions.spawnBot(player, first, second));
+        case 'pbac:duel':
+          return send(player, actions.spawnDuelBot(player, first, second));
         case 'pbac:clear':
           return send(player, actions.clearBots());
         case 'pbac:sites':

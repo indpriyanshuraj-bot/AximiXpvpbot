@@ -1,0 +1,17 @@
+﻿tile.bot:block.name=안산암
+multiplayer.player.joined=§7[§a+§7] §a%s
+multiplayer.player.joined.renamed=§7[§a+§7] §a%s
+multiplayer.player.left=§7[§c-§7] §c%s
+item.compass.name=§b내비게이터
+item.magma_cream.name=§b봇 제거
+item.slime_ball.name=§b봇
+item.dye.green.name=§b시작
+item.dye.orange.name=§b설정
+item.dye.blue_new.name=§b게임 모드 변경
+item.dye.black.name=§b최고 기록 초기화
+item.dye.red.name=§b나가기
+menu.returnToGame=§bAmixi로 돌아가기
+pauseScreen.quit=§bAmixi 종료
+unloadedchunk.message.warning=청크 로딩 중...
+accessibility.chat.howtoopen=\n
+accessibility.chat.howtoemote=\n

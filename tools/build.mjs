@@ -31,7 +31,12 @@ const BRIDGE = {
   output: 'PracticeBridge.mcpack',
 };
 
-const AMIXI_VENDOR = path.join(root, 'vendor', 'amixi');
+// The Amixi copy lives in third_party/amixi (committed with the author's
+// permission). vendor/amixi still wins if present, so a newer drop can be
+// staged without touching the committed one.
+const AMIXI_VENDOR = fs.existsSync(path.join(root, 'vendor', 'amixi', 'behavior_pack'))
+  ? path.join(root, 'vendor', 'amixi')
+  : path.join(root, 'third_party', 'amixi');
 
 // ------------------------------------------------------------------ zip
 
@@ -186,7 +191,7 @@ async function buildAmixi() {
       console.error('run: node tools/vendor.mjs --from "<path to Amixi .mcaddon>"');
       process.exit(1);
     }
-    console.log('AmixiXPvP.mcaddon        skipped (no vendor/amixi — see tools/vendor.mjs)');
+    console.log('AmixiXPvP.mcaddon        skipped (no third_party/amixi or vendor/amixi)');
     return;
   }
 
@@ -198,6 +203,7 @@ async function buildAmixi() {
   const original = fs.readFileSync(configPath, 'utf8');
   const { source, report, leftovers } = patchAmixiConfig(original);
   const applied = report.filter(r => r.status === 'patched' || r.status === 'injected').length;
+  const total = report.filter(r => r.status !== 'not found').length;
 
   // Fail the build rather than ship a pack that will not parse.
   await transform(source, { loader: 'js', format: 'esm' });
@@ -220,7 +226,7 @@ async function buildAmixi() {
 
   console.log(
     `AmixiXPvP.mcaddon        ${String(fs.statSync(outFile).size).padStart(8)} B  ` +
-    `${applied}/12 edits, ${leftovers.teleports} teleports left as-is`,
+    `${applied}/${total} edits, ${leftovers.teleports} teleports left as-is`,
   );
   for (const row of report) {
     if (row.status === 'patched' || row.status === 'injected') continue;

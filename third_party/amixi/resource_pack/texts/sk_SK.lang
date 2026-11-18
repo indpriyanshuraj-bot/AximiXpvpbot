@@ -1,0 +1,17 @@
+﻿tile.bot:block.name=Andezit
+multiplayer.player.joined=§7[§a+§7] §a%s
+multiplayer.player.joined.renamed=§7[§a+§7] §a%s
+multiplayer.player.left=§7[§c-§7] §c%s
+item.compass.name=§bNavigátor
+item.magma_cream.name=§bZabiť botov
+item.slime_ball.name=§bBot
+item.dye.green.name=§bŠtart
+item.dye.orange.name=§bKonfigurácia
+item.dye.blue_new.name=§bZmena herného režimu
+item.dye.black.name=§bResetovať najlepšie časy
+item.dye.red.name=§bOdísť
+menu.returnToGame=Späť do §bAmixi
+pauseScreen.quit=Ukončiť §bAmixi
+unloadedchunk.message.warning=Načítavam chunky...
+accessibility.chat.howtoopen=\n
+accessibility.chat.howtoemote=\n

@@ -1,0 +1,17 @@
+﻿tile.bot:block.name=Ανδεσίτης
+multiplayer.player.joined=§7[§a+§7] §a%s
+multiplayer.player.joined.renamed=§7[§a+§7] §a%s
+multiplayer.player.left=§7[§c-§7] §c%s
+item.compass.name=§bΠλοηγός
+item.magma_cream.name=§bΣκότωσε Bots
+item.slime_ball.name=§bBot
+item.dye.green.name=§bΈναρξη
+item.dye.orange.name=§bΡυθμίσεις
+item.dye.blue_new.name=§bΑλλαγή λειτουργίας παιχνιδιού
+item.dye.black.name=§bΕπαναφορά καλύτερων χρόνων
+item.dye.red.name=§bΈξοδος
+menu.returnToGame=Επιστροφή στο §bAmixi
+pauseScreen.quit=Έξοδος από §bAmixi
+unloadedchunk.message.warning=Φόρτωση περιοχών...
+accessibility.chat.howtoopen=\n
+accessibility.chat.howtoemote=\n

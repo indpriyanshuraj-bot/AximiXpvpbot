@@ -15,7 +15,8 @@ Amixi (patched)  ──globalThis.__pba──▶  Practice Bridge  ──bot_dat
 ## Install (what a player actually does)
 
 1. **Replace** your Amixi behaviour + resource packs with `AmixiXPvP.mcaddon`
-   (same pack UUIDs, so it updates in place).
+   (same pack UUIDs, so it updates in place). It is the Amixi pack from
+   `third_party/amixi`, patched at build time — included with the author's permission.
 2. **Install** `PracticeBridge.mcpack`.
 3. Keep **PvP Practice Bots** installed — the bridge drives it, it is not bundled.
 4. Turn **Beta APIs** on (simulated players require it) and reload the world.
@@ -33,6 +34,8 @@ Coordinates keep Amixi's original values until you change them: `/pba:site`, `/p
 | `src/bridge/api/registry.ts` | `pba:reg:<kind>:<id>` descriptors so installed packs publish what they offer and the UI lists the union. |
 | `src/bridge/providers/petstore.ts` | The adapter: spawns a simulated player with the addon's own prefix/tag and writes its `bot_data` contract. No third-party code. |
 | `src/bridge/actions.ts` | One implementation per admin action, shared by both command surfaces. |
+| `src/bridge/api/bots.ts` | `spawnDuel(player, variant, location)` — what patched Amixi calls instead of `summon bot:pvp`, plus `despawnNear` for its cleanup commands. |
+| `tools/codemod/lib-bots.mjs` | The bot seam: redirects Amixi's spawns/cleanup, teaches its targeting about bridge bots, and keeps its mob-only "cheat" moves away from simulated players. |
 | `src/bridge/commands.ts` | `/pba:...` custom commands (typed, guarded) plus `/scriptevent pbac:...` fallbacks. |
 | `src/bridge/ui/menu.ts` | Admin UI generated from the site list, map list and config nodes. |
 | `tools/codemod/` | Patches a **local** Amixi copy so its literals read from the bridge, with the original values as fallbacks. Idempotent. |
@@ -48,8 +51,10 @@ npm run build                                        # dist/PracticeBridge.mcpac
 npm run build:release                                # minified, fails if the Amixi copy is missing
 ```
 
-`vendor/amixi` is gitignored and never committed — the release build patches a copy you
-supply, and the bridge builds fine without one. See [NOTICE.md](NOTICE.md).
+`third_party/amixi` is committed with the author's permission and is what CI builds. To
+package a newer Amixi without touching it, stage one into `vendor/amixi` (gitignored) with
+`npm run vendor -- --from "<your Amixi.mcaddon>"` — that copy wins for the build. See
+[NOTICE.md](NOTICE.md).
 
 ## The API
 
@@ -75,6 +80,9 @@ caller must tolerate the object being absent.
   requests return an error and nothing else changes.
 * `bot_data` is written once, at spawn. The bot addon caches it per entity and writes it
   back, so retargeting means respawning. That is a property of their engine.
+* Amixi's own `bot:pvp` mobs are still used where its scripted moves matter; bridge bots
+  are the default for duel spawns, and the mob path stays as the fallback when the bridge
+  is absent or a spawn fails.
 * Commands move coordinates, not terrain. Pointing a site at unloaded chunks still
   teleports you into unloaded space.
 

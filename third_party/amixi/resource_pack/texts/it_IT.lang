@@ -1,0 +1,17 @@
+﻿tile.bot:block.name=Andesite
+multiplayer.player.joined=§7[§a+§7] §a%s
+multiplayer.player.joined.renamed=§7[§a+§7] §a%s
+multiplayer.player.left=§7[§c-§7] §c%s
+item.compass.name=§bNavigatore
+item.magma_cream.name=§bUccidi Bot
+item.slime_ball.name=§bBot
+item.dye.green.name=§bAvvia
+item.dye.orange.name=§bConfigurazione
+item.dye.blue_new.name=§bCambia modalità di gioco
+item.dye.black.name=§bReimposta tempi migliori
+item.dye.red.name=§bEsci
+menu.returnToGame=Ritorna a §bAmixi
+pauseScreen.quit=Esci da §bAmixi
+unloadedchunk.message.warning=Caricamento chunk...
+accessibility.chat.howtoopen=\n
+accessibility.chat.howtoemote=\n

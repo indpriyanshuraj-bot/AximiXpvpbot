@@ -77,12 +77,42 @@ Two things that must not be confused:
   on older engines; every custom-command registration is guarded by a presence check and
   the `pbac:` script events are the fallback.
 
+## The Amixi bot seam (v0.3)
+
+Patched Amixi calls `globalThis.__pba.bots.spawnDuel(player, variant, location)` wherever it
+used to `summon bot:pvp`. The shim in `tools/codemod/lib-bots.mjs` parses the original
+command string, so relative (`~ ~ ~`) and absolute coordinates both work, and it falls back
+to the untouched command if the bridge is missing or the spawn throws.
+
+What the bridge decides on that call:
+
+| Input | Source | Result |
+| --- | --- | --- |
+| mode | player tags (`nodebuff`, `builduhc`, `skywars`, ...) | `bridge.modeMap[mode]` → `{type}` or `{customId}` |
+| variant | `bot:god`, `bot:hacker`, `bot:clutch`, ... | difficulty (god→hard, hacker→impossible, clutch→medium) |
+| kit | player's container + equipment | copied when `bridge.copyKit` is on (default) |
+| skin | `bridge.skin` | `""` none, `random`, or `skin1..skin10` via `pb:set_skin_*` |
+| ML | `bridge.ml` | sets `mlDisabled:false` and `ml_enabled_<class>` |
+
+Three invariants keep this safe:
+
+1. **Mob-only moves skip bridge bots.** `potting`, `botpearl`, `boteatsgapple`, `botrod`,
+   `placeBlocksBetweenSourceAndBot`, `keepBlockUnderBotEntity`, `setFireAtSource` return
+   early when `isPbaBot(botEntity)` — the addon already does those properly, and two
+   engines fighting over one body looks broken.
+2. **Targeting sees both kinds.** `getClosestBotEntity` unions `type=bot:pvp` with
+   `getPlayers({ tags: ["PvPbot"] })`, so win detection and the HUD counters work for
+   either backend.
+3. **Cleanup kills both kinds.** Every `kill @e[type=bot:pvp]` became `PBA_KILL_BOTS`,
+   which despawns bridge bots within the same radius first.
+
+Not patched on purpose: the three `@e[type=bot:pvp,r=3]` selectors used by stickfight
+(knockback tag, slowness, stick give). They are cosmetic for that one mode and would need a
+second command per site; the codemod reports them as leftovers.
+
 ## Next steps (agreed direction)
 
-1. Amixi bot seam: replace `summon bot:pvp` / `bot:pvp` entity driving in the patched pack
-   with `__pba.bots.spawn(...)`, keeping the entity path as the default provider so the pack
-   still works without the bridge.
-2. Kit hand-off: Amixi's kit editor produces `ItemStack[]`; pass it as `inventory` in the
-   spawn request so kit authority stays with Amixi.
-3. Difficulty mapping table: Amixi 0/1/2/2.5/3/4 → easy/medium/hard/impossible.
-4. Second provider (`entity`) for worlds without Beta APIs.
+1. Second provider (`entity`) for worlds without Beta APIs, behind the same interface.
+2. Stickfight's three `@e[type=bot:pvp,r=3]` selectors (see leftovers above).
+3. Map-level kit hand-off: Amixi's kit editor knows the *intended* kit; right now we copy
+   what the player is holding at spawn time.

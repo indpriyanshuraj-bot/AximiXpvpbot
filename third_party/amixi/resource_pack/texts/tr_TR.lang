@@ -1,0 +1,17 @@
+﻿tile.bot:block.name=Andezit
+multiplayer.player.joined=§7[§a+§7] §a%s
+multiplayer.player.joined.renamed=§7[§a+§7] §a%s
+multiplayer.player.left=§7[§c-§7] §c%s
+item.compass.name=§bNavigatör
+item.magma_cream.name=§bBotları Öldür
+item.slime_ball.name=§bBot
+item.dye.green.name=§bBaşlat
+item.dye.orange.name=§bYapılandırma
+item.dye.blue_new.name=§bOyun Modu Değiştirici
+item.dye.black.name=§bEn İyi Zamanları Sıfırla
+item.dye.red.name=§bAyrıl
+menu.returnToGame=§bAmixi'ye Geri Dön
+pauseScreen.quit=§bAmixi'den Çık
+unloadedchunk.message.warning=Chunk'lar yükleniyor...
+accessibility.chat.howtoopen=\n
+accessibility.chat.howtoemote=\n

@@ -3,9 +3,9 @@
  * Prepare vendor/amixi from whatever the user has: an .mcaddon, a .zip, or an
  * already-extracted pair of folders.
  *
- * Amixi is not in this repository and never will be — the release build only
- * patches a copy the user supplies. If nothing is supplied the build simply
- * skips the Amixi artifact and still produces the bridge.
+ * The repository already carries a copy in third_party/amixi (committed with
+ * the author's permission). This tool is for staging a *newer* Amixi without
+ * touching the committed one: whatever lands in vendor/amixi takes priority.
  *
  *   node tools/vendor.mjs --from "/path/Amixi.mcaddon"
  *   AMIXI_SOURCE_URL=https://... node tools/vendor.mjs

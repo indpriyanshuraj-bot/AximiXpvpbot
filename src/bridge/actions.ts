@@ -121,6 +121,34 @@ export function spawnBot(player: Player | undefined, difficulty?: string, type?:
   return result.ok ? ok(`spawned ${result.provider} bot ${result.id}`) : fail(result.error ?? 'spawn failed');
 }
 
+/**
+ * Spawn a duel bot with the same rules the patched Amixi uses: mode comes from
+ * the player's own tags unless given, kit is copied, difficulty from the arg.
+ */
+export function spawnDuelBot(
+  player: Player | undefined,
+  mode?: string,
+  difficulty?: string,
+): ActionResult {
+  if (!player) return fail('run this as a player');
+  const resolvedMode = mode && mode !== 'auto' ? mode : bots.modeOf(player);
+  const entry = bots.entryForMode(resolvedMode);
+  const result = bots.spawn({
+    dimension: player.dimension.id,
+    location: { ...player.location },
+    difficulty: (difficulty as never) ?? (cfg.get<string>('bridge.difficulty') as never),
+    type: entry.type ?? 'sword',
+    customId: entry.customId,
+    targetId: player.id,
+    inventory: cfg.get<boolean>('bridge.copyKit') ? bots.inventoryOf(player) : undefined,
+    skin: cfg.get<string>('bridge.skin') || undefined,
+    ml: cfg.get<boolean>('bridge.ml'),
+  });
+  if (!result.ok) return fail(result.error ?? 'spawn failed');
+  const what = entry.customId ? `custom bot "${entry.customId}"` : `${entry.type ?? 'sword'} bot`;
+  return ok(`spawned ${what} for ${resolvedMode || 'free practice'} (${result.id})`);
+}
+
 export function clearBots(): ActionResult {
   return ok(`removed ${bots.despawnAll()} bot(s)`);
 }

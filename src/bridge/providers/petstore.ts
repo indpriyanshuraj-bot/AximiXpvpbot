@@ -130,6 +130,35 @@ function applyInventory(bot: Player, items: string[], clear: boolean): boolean {
   return true;
 }
 
+/**
+ * Skins are applied through the addon's own entity events (`pb:set_skin_<slot>`),
+ * which its resource pack defines. A request of "" means "leave it alone".
+ */
+function applySkin(bot: Player, skin: string | undefined): boolean {
+  if (!skin) return false;
+  let slot = skin.trim().toLowerCase();
+  if (slot === 'random') {
+    const enabled: string[] = [];
+    for (let i = 1; i <= 10; i++) {
+      const name = 'skin' + i;
+      try {
+        if (world.getDynamicProperty('skinToggle_' + name) !== false) enabled.push(name);
+      } catch {
+        /* ignore */
+      }
+    }
+    if (enabled.length === 0) return false;
+    slot = enabled[Math.floor(Math.random() * enabled.length)]!;
+  }
+  try {
+    bot.triggerEvent('pb:set_skin_' + slot);
+    return true;
+  } catch (e) {
+    debug('skin ' + slot + ' not applied: ' + e);
+    return false;
+  }
+}
+
 export const petstoreProvider: BotProvider = {
   id: 'petstore',
   caps: ['spawn', 'despawn', 'list', 'difficulty', 'inventory', 'tuning'],
@@ -156,10 +185,11 @@ export const petstoreProvider: BotProvider = {
       bot.addTag(BOT_TAG);
       bot.nameTag = request.name ?? BOT_PREFIX;
 
+      const isCustom = !!request.customId;
       const profile = {
         linked_player: request.targetId ?? 'player',
         difficulty: DIFFICULTY_VALUE[request.difficulty] ?? 2,
-        type: request.type,
+        type: isCustom ? 'custom' : request.type,
         action: 'none',
         is_eating: false,
         isPearling: false,
@@ -168,13 +198,24 @@ export const petstoreProvider: BotProvider = {
         jumpDelay: 0,
         default_name: bot.nameTag,
         ignoredTag: request.ignoreTag ?? null,
-        customId: null,
+        customId: request.customId ?? null,
         error: '',
         mlOverride: false,
-        mlDisabled: cfg.get<boolean>('bridge.mlDisabled'),
+        mlDisabled: !(request.ml ?? false) || cfg.get<boolean>('bridge.mlDisabled'),
         mlRole: 'attack',
       };
       bot.setDynamicProperty('bot_data', JSON.stringify(profile));
+
+      // Their learner is switched on per class through a world property.
+      if (!profile.mlDisabled) {
+        try {
+          world.setDynamicProperty('ml_enabled_' + profile.type, true);
+        } catch {
+          /* older engine */
+        }
+      }
+
+      applySkin(bot, request.skin ?? cfg.get<string>('bridge.skin'));
 
       if (request.inventory?.length) {
         applyInventory(bot, request.inventory, cfg.get<boolean>('bridge.clearInventory'));
@@ -184,7 +225,8 @@ export const petstoreProvider: BotProvider = {
         id: bot.id,
         provider: 'petstore',
         name: bot.nameTag,
-        type: request.type,
+        type: profile.type,
+        customId: request.customId,
         difficulty: request.difficulty,
         spawnedTick: 0,
         targetId: request.targetId,

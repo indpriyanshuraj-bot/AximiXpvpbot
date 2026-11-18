@@ -5,6 +5,8 @@
  * touching the filesystem: patchAmixiConfig(text) -> { source, report, leftovers }
  */
 
+import { patchAmixiBots } from './lib-bots.mjs';
+
 export const SHIM_MARKER = 'practice-bridge shim';
 
 export function patchAmixiConfig(input) {
@@ -207,5 +209,14 @@ replaceAll(
     teleports: (source.match(/\.teleport\(/g) ?? []).length,
   };
 
-  return { source, report, leftovers };
+  // second pass: the bot seam (spawns, cleanup, targeting, mob-only guards)
+  const bots = patchAmixiBots(source);
+  source = bots.source;
+  report.push(...bots.report);
+
+  return {
+    source,
+    report,
+    leftovers: { ...leftovers, ...bots.leftovers },
+  };
 }

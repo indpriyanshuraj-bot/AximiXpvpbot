@@ -53,4 +53,60 @@ world.afterEvents.worldLoad.subscribe(() => {
     function delblock6x(source, posx, posy, posz) {
         source.runCommand(`fill ${posx} ${posy} ${posz} air`);
     }
+
+    function spawnDuelBot(source, botType) {
+        source.runCommand(`execute at @s run summon bot:pvp ~ ~ ~ ~ ~ ${botType.summon}`);
+        system.runTimeout(() => {
+            const summonCmd = botType.summon === "" ?
+                `summon bot:pvp ${mapObj.spawn2.x} ${mapObj.spawn2.y} ${mapObj.spawn2.z}` :
+                `summon bot:pvp ${mapObj.spawn2.x} ${mapObj.spawn2.y} ${mapObj.spawn2.z} ~ ~ bot:${botType.summon}`;
+            source.runCommand(summonCmd);
+            source.runCommand(`summon bot:pvp ${posx} ${posy} ${posz} ~ ~ bot:clutch`);
+            source.runCommand("execute at @s run kill @e[type=bot:pvp,r=10]");
+            source.runCommand("execute at @s run kill @e[type=bot:pvp,r=100]");
+            source.runCommand('execute at @s run kill @e[type=bot:pvp,r=10]');
+            hurtEntity.runCommand('execute at @s run kill @e[type=bot:pvp]');
+        }, 60);
+    }
+
+    function potting(source, botEntity) {
+        botEntity.runCommand('replaceitem entity @s slot.weapon.mainhand 0 splash_potion 1 22');
+    }
+
+    function botpearl(source, botEntity) {
+        botEntity.runCommand(`tp @s ${source.location.x} ${source.location.y} ${source.location.z}`);
+    }
+
+    function boteatsgapple (source, botEntity) {
+        botEntity.runCommand('replaceitem entity @s slot.weapon.mainhand 0 golden_apple');
+    }
+
+    function botrod (source, botEntity) {
+        botEntity.runCommand('replaceitem entity @s slot.weapon.mainhand 0 fishing_rod');
+    }
+
+    function placeBlocksBetweenSourceAndBot(source, botEntity) {
+        botEntity.runCommand('replaceitem entity @s slot.weapon.mainhand 1 andesite');
+    }
+
+    function keepBlockUnderBotEntity(source, botEntity) {
+        botEntity.runCommand('setblock ~ ~-1 ~ andesite');
+    }
+
+    function setFireAtSource(source, botEntity) {
+        botEntity.runCommand('setblock ~ ~ ~ fire');
+    }
+
+    function getClosestBotEntity(source) {
+        if (!source || !source.dimension) return { minDist: Infinity, botEntity: null, botName: null };
+        let botEntity = null;
+        let botName = null;
+        let minDist = Infinity;
+        const entities = source.dimension.getEntities ? source.dimension.getEntities({ type: "bot:pvp" }) : [];
+        for (const entity of entities) {
+            const dx = entity.location.x - source.location.x;
+            if (dx < minDist) { minDist = dx; botEntity = entity; botName = entity.nameTag; }
+        }
+        return { minDist, botEntity, botName };
+    }
 });

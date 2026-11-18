@@ -1,0 +1,17 @@
+﻿tile.bot:block.name=安山岩
+multiplayer.player.joined=§7[§a+§7] §a%s
+multiplayer.player.joined.renamed=§7[§a+§7] §a%s
+multiplayer.player.left=§7[§c-§7] §c%s
+item.compass.name=§b导航器
+item.magma_cream.name=§b击杀机器人
+item.slime_ball.name=§b机器人
+item.dye.green.name=§b开始
+item.dye.orange.name=§b配置
+item.dye.blue_new.name=§b游戏模式切换器
+item.dye.black.name=§b重置最佳时间
+item.dye.red.name=§b离开
+menu.returnToGame=返回 §bAmixi
+pauseScreen.quit=退出 §bAmixi
+unloadedchunk.message.warning=正在加载区块...
+accessibility.chat.howtoopen=\n
+accessibility.chat.howtoemote=\n

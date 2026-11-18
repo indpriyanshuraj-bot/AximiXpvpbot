@@ -14,6 +14,12 @@ export interface SpawnRequest {
   /** Optional inventory override: "minecraft:diamond_sword" or "minecraft:golden_apple:8" */
   inventory?: string[];
   ignoreTag?: string;
+  /** Custom bot id from the addon's own Bot Builder. Switches type to "custom". */
+  customId?: string;
+  /** "", "random", or "skin1".."skin10" — applied through the addon's own events. */
+  skin?: string;
+  /** Let the addon's per-class learner drive this bot. */
+  ml?: boolean;
 }
 
 export interface BotHandle {
@@ -21,6 +27,7 @@ export interface BotHandle {
   provider: string;
   name: string;
   type: string;
+  customId?: string;
   difficulty: Difficulty;
   spawnedTick: number;
   targetId?: string;

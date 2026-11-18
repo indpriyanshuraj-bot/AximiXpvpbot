@@ -1,0 +1,127 @@
+{
+	"format_version": "1.8.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "bot:pvp",
+			"materials": {
+				"default": "entity_alphatest"
+			},
+			"textures": {
+                "steve": "textures/entity/steve",
+                "npc1": "textures/entity/npc1",
+                "npc2": "textures/entity/npc2",
+                "npc3": "textures/entity/npc3",
+                "npc4": "textures/entity/npc4",
+                "npc5": "textures/entity/npc5",
+                "npc6": "textures/entity/npc6",
+                "npc7": "textures/entity/npc7",
+                "npc8": "textures/entity/npc8",
+                "npc9": "textures/entity/npc9",
+                "npc10": "textures/entity/npc10",
+                "npc11": "textures/entity/npc11",
+                "npc12": "textures/entity/npc12",
+                "npc13": "textures/entity/npc13",
+                "npc14": "textures/entity/npc14",
+                "npc15": "textures/entity/npc15",
+                "npc16": "textures/entity/npc16",
+                "npc17": "textures/entity/npc17",
+                "npc18": "textures/entity/npc18",
+                "npc19": "textures/entity/npc19",
+                "npc20": "textures/entity/npc20",
+                "npc21": "textures/entity/npc21",
+                "npc22": "textures/entity/npc22",
+                "npc23": "textures/entity/npc23",
+                "npc24": "textures/entity/npc24",
+                "npc25": "textures/entity/npc25",
+                "npc26": "textures/entity/npc26",
+                "npc27": "textures/entity/npc27",
+                "npc28": "textures/entity/npc28",
+                "npc29": "textures/entity/npc29",
+                "npc30": "textures/entity/npc30",
+                "npc31": "textures/entity/npc31",
+                "npc32": "textures/entity/npc32",
+                "npc33": "textures/entity/npc33",
+                "npc34": "textures/entity/npc34",
+                "npc35": "textures/entity/npc35",
+                "npc36": "textures/entity/npc36",
+                "npc37": "textures/entity/npc37",
+                "npc38": "textures/entity/npc38",
+                "npc39": "textures/entity/npc39",
+                "npc40": "textures/entity/npc40",
+                "npc41": "textures/entity/npc41",
+                "npc42": "textures/entity/npc42",
+                "npc43": "textures/entity/npc43",
+                "npc44": "textures/entity/npc44",
+                "npc45": "textures/entity/npc45",
+                "npc46": "textures/entity/npc46",
+                "npc47": "textures/entity/npc47",
+                "npc48": "textures/entity/npc48",
+                "npc49": "textures/entity/npc49",
+                "npc50": "textures/entity/npc50"
+            },
+			"spawn_egg": {
+				"base_color": "#000000",
+				"overlay_color": "#03ff00"
+			},
+			"geometry": {
+        "default": "geometry.humanoid.custom",
+        "cape": "geometry.cape"
+      },
+     "scripts": {
+				"pre_animation": ["variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;"]
+			},
+			"animations": {
+				"humanoid_big_head": "animation.humanoid.big_head",
+				"look_at_target_default": "animation.humanoid.look_at_target.default",
+				"look_at_target_gliding": "animation.humanoid.look_at_target.gliding",
+				"look_at_target_swimming": "animation.humanoid.look_at_target.swimming",
+				"move": "animation.humanoid.move",
+				"holding": "animation.humanoid.holding",
+				"brandish_spear": "animation.humanoid.brandish_spear",
+				"charging": "animation.humanoid.charging",
+					"attack": "animation.bot.attack",
+				"sneaking": "animation.humanoid.sneaking",
+				"bob": "animation.player.bob",
+				"use_item_progress": "animation.humanoid.use_item_progress",
+				"swimming": "animation.humanoid.swimming"
+			},
+			"animation_controllers": [
+				{
+					"humanoid_baby_big_head": "controller.animation.humanoid.baby_big_head"
+				},
+				{
+					"look_at_target": "controller.animation.humanoid.look_at_target"
+				},
+				{
+					"move": "controller.animation.humanoid.move"
+				},
+				{
+					"holding": "controller.animation.humanoid.holding"
+				},
+				{
+					"brandish_spear": "controller.animation.humanoid.brandish_spear"
+				},
+				{
+					"charging": "controller.animation.humanoid.charging"
+				},
+				{
+					"sneaking": "controller.animation.humanoid.sneaking"
+				},
+				{
+					"bob": "controller.animation.humanoid.bob"
+				},
+				{
+					"attack": "controller.animation.bot.attack"
+				},
+				{
+					"use_item_progress": "controller.animation.humanoid.use_item_progress"
+				},
+				{
+					"swimming": "controller.animation.zombie.swimming"
+				}
+			],
+			"render_controllers": ["controller.render.pvp"],
+			"enable_attachables": true
+		}
+	}
+}

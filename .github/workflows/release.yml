@@ -25,16 +25,16 @@ jobs:
       - run: npm run typecheck
       - run: npm test
 
-      # Amixi is not in this repository. If the repo (or org) has an
-      # AMIXI_SOURCE_URL secret pointing at your own copy, the patched
-      # mcaddon is built too. Without it, only the bridge is released.
-      - name: Prepare Amixi source
+      # third_party/amixi is committed with the Amixi author's permission.
+      # Setting AMIXI_SOURCE_URL stages a newer copy over it for this run only.
+      - name: Optional newer Amixi copy
+        if: ${{ env.AMIXI_SOURCE_URL != '' }}
         env:
           AMIXI_SOURCE_URL: ${{ secrets.AMIXI_SOURCE_URL }}
         run: node tools/vendor.mjs
 
       - name: Build release artifacts
-        run: node tools/build.mjs --minify
+        run: node tools/build.mjs --minify --require-amixi
 
       - name: Collect artifacts and checksums
         id: artifacts
@@ -77,6 +77,6 @@ jobs:
 
             Then run `/pba:menu` (or `/scriptevent pbac:menu`). See `docs/commands.md`.
 
-            If the Amixi artifact is missing, this repo had no `AMIXI_SOURCE_URL` secret —
-            build it locally with `npm run vendor -- --from <your Amixi.mcaddon>` then `npm run build`.
+            `AmixiXPvP.mcaddon` is the Amixi pack from `third_party/amixi`, patched at build time
+            (included with the Amixi author's permission). Credit the Amixi team if you redistribute it.
           files: ${{ steps.artifacts.outputs.files }}

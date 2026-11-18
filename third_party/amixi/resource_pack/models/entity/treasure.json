@@ -1,0 +1,128 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.bot_treasure",
+        "texture_width": 128,
+        "texture_height": 128,
+        "visible_bounds_width": 2,
+        "visible_bounds_height": 2.5,
+        "visible_bounds_offset": [
+          0,
+          0.75,
+          0
+        ]
+      },
+      "bones": [
+        {
+          "name": "treasure",
+          "cubes": [
+            {
+              "origin": [
+                -6.0,
+                0.0,
+                -7.0
+              ],
+              "size": [
+                12.0,
+                10.0,
+                14.0
+              ],
+              "uv": [
+                0,
+                19
+              ],
+              "inflate": 0
+            },
+            {
+              "origin": [
+                -7.0,
+                9.0,
+                -8.0
+              ],
+              "size": [
+                14.0,
+                3.0,
+                16.0
+              ],
+              "uv": [
+                0,
+                0
+              ],
+              "inflate": 0
+            },
+            {
+              "origin": [
+                -6.0,
+                12.0,
+                -8.0
+              ],
+              "size": [
+                12.0,
+                2.0,
+                16.0
+              ],
+              "uv": [
+                36,
+                27
+              ],
+              "inflate": 0
+            },
+            {
+              "origin": [
+                -5.0,
+                14.0,
+                -8.0
+              ],
+              "size": [
+                10.0,
+                1.0,
+                16.0
+              ],
+              "uv": [
+                0,
+                43
+              ],
+              "inflate": 0
+            },
+            {
+              "origin": [
+                -7.0,
+                6.0,
+                -2.0
+              ],
+              "size": [
+                1.0,
+                3.0,
+                3.0
+              ],
+              "uv": [
+                5,
+                3
+              ],
+              "inflate": 0
+            },
+            {
+              "origin": [
+                6.0,
+                6.0,
+                -1.0
+              ],
+              "size": [
+                1.0,
+                3.0,
+                3.0
+              ],
+              "uv": [
+                0,
+                0
+              ],
+              "inflate": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

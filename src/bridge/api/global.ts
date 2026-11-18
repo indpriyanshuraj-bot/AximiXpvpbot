@@ -30,9 +30,13 @@ export interface PbaApi {
   };
   bots: {
     spawn(request: Parameters<typeof bots.spawn>[0]): ReturnType<typeof bots.spawn>;
+    /** Called by patched Amixi instead of `summon bot:pvp`. */
+    spawnDuel(player: unknown, variant: string, location: { x: number; y: number; z: number }): ReturnType<typeof bots.spawn>;
     despawn(id: string): boolean;
+    despawnNear(location: { x: number; y: number; z: number }, radius?: number, dimensionId?: string): number;
     despawnAll(): number;
     list(): ReturnType<typeof bots.list>;
+    mode(player: unknown): string;
   };
   config: {
     get(key: string): boolean | number | string;
@@ -60,9 +64,12 @@ export function install(version: string): PbaApi {
     },
     bots: {
       spawn: bots.spawn,
+      spawnDuel: bots.spawnDuel,
       despawn: bots.despawn,
+      despawnNear: bots.despawnNear,
       despawnAll: bots.despawnAll,
       list: bots.list,
+      mode: bots.modeOf,
     },
     config: {
       get: config.get,

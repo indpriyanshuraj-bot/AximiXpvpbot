@@ -17,6 +17,7 @@ twin — same behaviour, same validation.
 | `/pba:map <move\|tp\|reset> <id> [offset]` | op | `move` shifts every point of a map; `tp` sets its spawn here; `reset` restores it. |
 | `/pba:reset [target]` | op | Reset one site/map, or everything (`all`), to the Amixi defaults. |
 | `/pba:spawn [difficulty] [type]` | op | Spawn a bot at your position that fights you. |
+| `/pba:duel [mode] [difficulty]` | op | Spawn using your current Amixi mode tag: picks the mapped bot type or custom bot, copies your kit, applies skin/ML settings. |
 | `/pba:clear` | op | Remove every practice bot. |
 | `/pba:set <key> <value>` | op | Change one bridge setting, e.g. `bridge.difficulty hard`. |
 
@@ -36,6 +37,7 @@ twin — same behaviour, same validation.
 | `/scriptevent pbac:map reset bridge0` | restore one map |
 | `/scriptevent pbac:reset all` | restore every override |
 | `/scriptevent pbac:spawn hard axe` | spawn a hard axe bot |
+| `/scriptevent pbac:duel nodebuff` | duel bot mapped from the `nodebuff` entry |
 | `/scriptevent pbac:clear` | remove every bot |
 | `/scriptevent pbac:set bridge.maxBots 12` | change a setting |
 | `/scriptevent pbac:config` | dump every setting |
@@ -64,8 +66,16 @@ it is unambiguous.
 
 ## Settings keys
 
-`bridge.provider`, `bridge.difficulty`, `bridge.type`, `bridge.mlDisabled`,
-`bridge.maxBots`, `bridge.clearInventory`, `bridge.despawnOnLeave`, `bridge.log`.
+`bridge.provider`, `bridge.difficulty`, `bridge.type`, `bridge.mlDisabled`, `bridge.maxBots`,
+`bridge.clearInventory`, `bridge.despawnOnLeave`, `bridge.copyKit`, `bridge.ml`, `bridge.skin`,
+`bridge.modeMap`, `bridge.log`.
+
+`bridge.modeMap` is JSON: an Amixi mode tag to `{"type":"sword"}` or to a bot you built in the
+addon's Bot Builder, `{"customId":"MySkywarsBot"}`. Example:
+
+```json
+{"nodebuff":{"type":"sword"},"builduhc":{"type":"uhc"},"skywars":{"customId":"SkywarsBot"}}
+```
 
 ## What these commands cannot do
 

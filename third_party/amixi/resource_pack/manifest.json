@@ -1,0 +1,18 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "Practice Material (Base)",
+		"description": "Do not remove",
+		"uuid": "115b0722-dcbd-42b5-8ba3-4b397ee6e1b6",
+		"version": [1, 0, 0],
+		"min_engine_version": [1, 21, 90]
+	},
+	"modules": [
+		{
+			"description": "Do not remove",
+			"type": "resources",
+			"uuid": "2eaf7789-3d6d-4b7a-b27a-20c14c52fbe7",
+			"version": [1, 0, 0]
+		}
+	]
+}

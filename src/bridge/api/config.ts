@@ -53,6 +53,26 @@ export const NODES: ConfigNode[] = [
     key: 'bridge.despawnOnLeave', label: 'Despawn a bot when its target leaves', type: 'bool', def: true,
   },
   {
+    key: 'bridge.copyKit', label: 'Give the bot a copy of your kit', type: 'bool', def: true,
+    help: 'Amixi hands you a kit before the duel; the bot gets the same one.',
+  },
+  {
+    key: 'bridge.ml', label: 'Let bots learn (addon ML brain)', type: 'bool', def: false,
+    help: 'Enables the bot addon per-class learner. Heavier, and it changes behaviour over time.',
+  },
+  {
+    key: 'bridge.skin', label: 'Bot skin', type: 'string', def: '',
+    help: "Blank = addon default, 'random' = one of the enabled skins, or 'skin1'..'skin10'.",
+  },
+  {
+    key: 'bridge.modeMap', label: 'Mode to bot mapping (JSON)', type: 'string',
+    def: '{"nodebuff":{"type":"sword"},"boxing":{"type":"sword"},"sumo":{"type":"sword"},'
+       + '"midfight":{"type":"sword"},"combo":{"type":"sword"},"hallfight":{"type":"sword"},'
+       + '"stickfight":{"type":"sword"},"builduhc":{"type":"uhc"},"gapple":{"type":"uhc"},'
+       + '"skywars":{"type":"sword"},"treasurewars":{"type":"sword"}}',
+    help: 'Maps an Amixi mode tag to {"type":"sword"} or {"customId":"<your Bot Builder bot>"}.',
+  },
+  {
     key: 'bridge.log', label: 'Verbose logging', type: 'bool', def: false,
   },
 ];

@@ -1,0 +1,17 @@
+﻿tile.bot:block.name=Andesit
+multiplayer.player.joined=§7[§a+§7] §a%s
+multiplayer.player.joined.renamed=§7[§a+§7] §a%s
+multiplayer.player.left=§7[§c-§7] §c%s
+item.compass.name=§bNavigator
+item.magma_cream.name=§bDöda bottar
+item.slime_ball.name=§bBot
+item.dye.green.name=§bStarta
+item.dye.orange.name=§bKonfiguration
+item.dye.blue_new.name=§bByt spelläge
+item.dye.black.name=§bÅterställ bästa tider
+item.dye.red.name=§bLämna
+menu.returnToGame=Tillbaka till §bAmixi
+pauseScreen.quit=Avsluta §bAmixi
+unloadedchunk.message.warning=Laddar chunkar...
+accessibility.chat.howtoopen=\n
+accessibility.chat.howtoemote=\n

@@ -58,3 +58,15 @@ pack loads on 1.21.90 and gains real commands on newer engines.
 `vendor/amixi` is gitignored. `npm run build` patches it when present and skips it when
 not; `build:release` fails instead of shipping half a release. CI gets the copy through an
 `AMIXI_SOURCE_URL` secret, so the repository never carries third-party files.
+
+## 10. Amixi is committed, with permission
+
+The author allowed redistribution, so `third_party/amixi` is in the repo and CI builds the
+mcaddon from it — no secrets, no "build it yourself" step. The patch still runs on a
+temporary copy so the committed tree never changes.
+
+## 11. Redirect Amixi's bot spawns instead of replacing its bot system
+
+A full rewrite of Amixi's bot handling would mean re-deriving its win conditions, HUD and
+per-mode scripts. Redirecting `summon`/`kill`/targeting keeps every one of those working
+for both backends, and the original command is still the fallback.

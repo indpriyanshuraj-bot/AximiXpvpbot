@@ -1,0 +1,13 @@
+{
+	"format_version" : "1.17.30",
+	"animation_controllers" : {
+		"controller.animation.bot.attack": {
+			"initial_state" : "attack",
+			"states" : {
+				"attack" : {
+					"animations" : [ "attack" ]
+				}
+			}
+	}
+}
+}

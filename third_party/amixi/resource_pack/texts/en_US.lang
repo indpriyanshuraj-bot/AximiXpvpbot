@@ -1,0 +1,17 @@
+tile.bot:block.name=Andesite
+multiplayer.player.joined=§7[§a+§7] §a%s
+multiplayer.player.joined.renamed=§7[§a+§7] §a%s
+multiplayer.player.left=§7[§c-§7] §c%s
+item.compass.name=§bNavigator
+item.magma_cream.name=§bKill Bots
+item.slime_ball.name=§bBot
+item.dye.green.name=§bStart
+item.dye.orange.name=§bConfig
+item.dye.blue_new.name=§bGamemode Changer
+item.dye.black.name=§bReset Best Times
+item.dye.red.name=§bLeave
+menu.returnToGame=Back to §bAmixi
+pauseScreen.quit=Exit §bAmixi
+unloadedchunk.message.warning=Loading chunks...
+accessibility.chat.howtoopen=\n
+accessibility.chat.howtoemote=\n

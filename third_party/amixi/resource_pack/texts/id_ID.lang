@@ -1,0 +1,17 @@
+﻿tile.bot:block.name=Andesit
+multiplayer.player.joined=§7[§a+§7] §a%s
+multiplayer.player.joined.renamed=§7[§a+§7] §a%s
+multiplayer.player.left=§7[§c-§7] §c%s
+item.compass.name=§bNavigator
+item.magma_cream.name=§bBunuh Bot
+item.slime_ball.name=§bBot
+item.dye.green.name=§bMulai
+item.dye.orange.name=§bPengaturan
+item.dye.blue_new.name=§bGanti Mode Permainan
+item.dye.black.name=§bReset Waktu Terbaik
+item.dye.red.name=§bKeluar
+menu.returnToGame=Kembali ke §bAmixi
+pauseScreen.quit=Keluar dari §bAmixi
+unloadedchunk.message.warning=Memuat chunk...
+accessibility.chat.howtoopen=\n
+accessibility.chat.howtoemote=\n

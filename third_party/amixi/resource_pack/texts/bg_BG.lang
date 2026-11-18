@@ -1,0 +1,17 @@
+﻿tile.bot:block.name=Андезит
+multiplayer.player.joined=§7[§a+§7] §a%s
+multiplayer.player.joined.renamed=§7[§a+§7] §a%s
+multiplayer.player.left=§7[§c-§7] §c%s
+item.compass.name=§bНавигатор
+item.magma_cream.name=§bУбий ботове
+item.slime_ball.name=§bБот
+item.dye.green.name=§bСтарт
+item.dye.orange.name=§bКонфигуриране
+item.dye.blue_new.name=§bСмяна на режим
+item.dye.black.name=§bНулиране на най-добри времена
+item.dye.red.name=§bНапускане
+menu.returnToGame=Обратно към §bAmixi
+pauseScreen.quit=Изход от §bAmixi
+unloadedchunk.message.warning=Зареждане на чънкове...
+accessibility.chat.howtoopen=\n
+accessibility.chat.howtoemote=\n

@@ -1,0 +1,67 @@
+{
+	"format_version": "1.8.0",
+	"render_controllers": {
+		"controller.render.pvp": {
+			"arrays": {
+				"textures": {
+					"Array.skins": [
+                        "Texture.steve",
+                        "Texture.npc1",
+                        "Texture.npc2",
+                        "Texture.npc3",
+                        "Texture.npc4",
+                        "Texture.npc5",
+                        "Texture.npc6",
+                        "Texture.npc7",
+                        "Texture.npc8",
+                        "Texture.npc9",
+                        "Texture.npc10",
+                        "Texture.npc11",
+                        "Texture.npc12",
+                        "Texture.npc13",
+                        "Texture.npc14",
+                        "Texture.npc15",
+                        "Texture.npc16",
+                        "Texture.npc17",
+                        "Texture.npc18",
+                        "Texture.npc19",
+                        "Texture.npc20",
+                        "Texture.npc21",
+                        "Texture.npc22",
+                        "Texture.npc23",
+                        "Texture.npc24",
+                        "Texture.npc25",
+                        "Texture.npc26",
+                        "Texture.npc27",
+                        "Texture.npc28",
+                        "Texture.npc29",
+                        "Texture.npc30",
+                        "Texture.npc31",
+                        "Texture.npc32",
+                        "Texture.npc33",
+                        "Texture.npc34",
+                        "Texture.npc35",
+                        "Texture.npc36",
+                        "Texture.npc37",
+                        "Texture.npc38",
+                        "Texture.npc39",
+                        "Texture.npc40",
+                        "Texture.npc41",
+                        "Texture.npc42",
+                        "Texture.npc43",
+                        "Texture.npc44",
+                        "Texture.npc45",
+                        "Texture.npc46",
+                        "Texture.npc47",
+                        "Texture.npc48",
+                        "Texture.npc49",
+                        "Texture.npc50"
+                    ]
+				}
+			},
+			"geometry": "Geometry.default",
+			"materials": [ { "*": "Material.default" } ],
+			"textures": [ "Array.skins[query.variant]" ]
+		}
+	}
+}

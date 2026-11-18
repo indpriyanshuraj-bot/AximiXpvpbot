@@ -1,0 +1,17 @@
+﻿tile.bot:block.name=Andezit
+multiplayer.player.joined=§7[§a+§7] §a%s
+multiplayer.player.joined.renamed=§7[§a+§7] §a%s
+multiplayer.player.left=§7[§c-§7] §c%s
+item.compass.name=§bNavigátor
+item.magma_cream.name=§bBotok megölése
+item.slime_ball.name=§bBot
+item.dye.green.name=§bIndítás
+item.dye.orange.name=§bBeállítások
+item.dye.blue_new.name=§bJátékmód váltása
+item.dye.black.name=§bLegjobb idők visszaállítása
+item.dye.red.name=§bKilépés
+menu.returnToGame=Vissza a §bAmixi-hez
+pauseScreen.quit=Kilépés a §bAmixi-ből
+unloadedchunk.message.warning=Chunkok betöltése...
+accessibility.chat.howtoopen=\n
+accessibility.chat.howtoemote=\n

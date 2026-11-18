@@ -1,21 +1,26 @@
 # Third-party notices
 
-This repository contains **only** the Practice Bridge and its tooling. It ships no code
-from either addon it is designed to work with.
+## Amixi — included with permission
 
-- **Amixi** (behaviour + resource pack) — third-party world template. No licence file is
-  distributed with it and no permission is stated, so it is not included here. The patcher
-  in `tools/codemod/` rewrites a copy you already have, on your machine, and keeps a
-  `.pba-original` backup. `vendor/` is gitignored; the release build patches your copy and
-  packages the result for you.
-- **PvP Practice Bots** by Kaden Collier / Petstorebuffet — third-party addon whose licence
-  permits personal and server use and modification, and prohibits redistribution of the
-  original or of modified versions. It is **not** included, forked or repackaged here. The
-  bridge drives it through its documented-in-behaviour data contract (`bot_data` plus a
-  simulated player with its own name prefix), which is the same interface the addon uses
-  internally.
+`third_party/amixi/` contains the Amixi behaviour and resource packs. They are included
+here **with the Amixi author's permission**, confirmed directly with the project owner.
+Credit the Amixi team if you redistribute a world or a build that contains them.
 
-If you publish a world that uses either addon, follow their terms: credit Petstorebuffet,
-and do not redistribute Amixi.
+The build patches this copy at package time (`tools/codemod/`) and writes the result to
+`dist/AmixiXPvP.mcaddon`. The committed copy is never modified in place — the patch runs on
+a temporary copy, so `git status` stays clean after a build.
 
-The code in this repository is Apache-2.0, matching the LICENSE file.
+## PvP Practice Bots — not included
+
+**PvP Practice Bots** by Kaden Collier / Petstorebuffet is a third-party addon whose licence
+permits personal and server use and modification, and prohibits redistribution of the
+original or of modified versions. It is **not** included, forked or repackaged here.
+
+The bridge drives it through its own data contract — a simulated player with its own name
+prefix and `PvPbot` tag, plus a `bot_data` dynamic property in the shape its manager reads.
+That is the same interface the addon uses internally, so no code is copied and nothing is
+patched. Install it yourself from its official page.
+
+## Code in this repository
+
+Apache-2.0, matching the LICENSE file.
