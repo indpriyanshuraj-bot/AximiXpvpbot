@@ -36,11 +36,24 @@ jobs:
       - name: Build release artifacts
         run: node tools/build.mjs --minify
 
-      - name: Checksums
+      - name: Collect artifacts and checksums
+        id: artifacts
         run: |
           cd dist
-          sha256sum *.mcpack *.mcaddon 2>/dev/null > SHA256SUMS.txt || sha256sum *.mcpack > SHA256SUMS.txt
+          shopt -s nullglob
+          files=( *.mcpack *.mcaddon )
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "no artifacts were produced" >&2
+            exit 1
+          fi
+          sha256sum "${files[@]}" > SHA256SUMS.txt
           cat SHA256SUMS.txt
+          {
+            echo "files<<EOF"
+            printf '%s\n' "${files[@]}" SHA256SUMS.txt
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+          ls -la
 
       - uses: actions/upload-artifact@v4
         with:
@@ -67,7 +80,4 @@ jobs:
 
             If the Amixi artifact is missing, this repo had no `AMIXI_SOURCE_URL` secret —
             build it locally with `npm run vendor -- --from <your Amixi.mcaddon>` then `npm run build`.
-          files: |
-            dist/*.mcpack
-            dist/*.mcaddon
-            dist/SHA256SUMS.txt
+          files: ${{ steps.artifacts.outputs.files }}
