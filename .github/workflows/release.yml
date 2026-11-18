@@ -50,10 +50,9 @@ jobs:
           cat SHA256SUMS.txt
           {
             echo "files<<EOF"
-            printf '%s\n' "${files[@]}" SHA256SUMS.txt
+            for f in "${files[@]}" SHA256SUMS.txt; do echo "dist/$f"; done
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
-          ls -la
 
       - uses: actions/upload-artifact@v4
         with:
